@@ -1,5 +1,3 @@
-//参考：https://www.cnblogs.com/gary-guo/p/6542141.html#commentform
-//2019-05-05
 //实现了将深度图像和RGB彩色图像转换成RGB点云
 //*********注意数据集深度图与rgb图像的对应关系***********
 // c++标准库 
@@ -23,12 +21,6 @@ typedef pcl::PointCloud<PointT> PointCloud;
  const double camera_cy=240;
  const double camera_fx=583.0;
  const double camera_fy=583.0;
-
-//const double camera_factor=1000;
-//const double camera_cx=319.5439758300781;
-//const double camera_cy=240.34002685546875;
-//const double camera_fx=384.6130676269531;
-//const double camera_fy=384.6130676269531;
  
 // 主函数
 int main(int argc,char** argv)
