@@ -5,7 +5,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-#define ISCOUT 1
+#define ISCOUT 0
 
 class CamParasLoad
 {
