@@ -11,7 +11,7 @@ class CamParasLoad
 {
 private:
 	cv::Mat CameraColor, CameraDepth, CameraHeat, CameraInf1, CameraInf2, CameraMulti1;
-	cv::Mat T_color_depth, T_color_infra1, T_color_infra2, T_color_multi1;
+	cv::Mat T_depth_color, T_color_infra1, T_color_infra2, T_color_multi1;
 	cv::Mat T_lidar_heat, T_lidar_color;
 public:
 	CamParasLoad(std::string path);
@@ -23,7 +23,7 @@ public:
 	cv::Mat get_Multi1_para();
 	cv::Mat get_Heat_para();
 
-	cv::Mat get_T_color_depth();
+	cv::Mat get_T_depth_color();
 	cv::Mat get_T_color_infra1();
 	cv::Mat get_T_color_infra2();
 	cv::Mat get_T_color_multi1();
@@ -42,7 +42,7 @@ CamParasLoad::CamParasLoad(std::string path)
 	fs["CameraMulti1"] >> CameraMulti1;
 	fs["CameraHeat"] >> CameraHeat;
 
-	fs["T_color_depth"] >> T_color_depth;
+	fs["T_depth_color"] >> T_depth_color;
 	fs["T_color_infra1"] >> T_color_infra1;
 	fs["T_color_infra2"] >> T_color_infra2;
 	fs["T_color_multi1"] >> T_color_multi1;
@@ -57,7 +57,7 @@ CamParasLoad::CamParasLoad(std::string path)
 	std::cout << "CameraMulti1 instrinc matrix :" << std::endl << CameraMulti1 << std::endl;
 	std::cout << "CameraHeat instrinc matrix :" << std::endl << CameraHeat << std::endl;
 
-	std::cout << "T_color_depth matrix :" << std::endl << T_color_depth << std::endl;
+	std::cout << "T_depth_color matrix :" << std::endl << T_depth_color << std::endl;
 	std::cout << "T_color_infra1 matrix :" << std::endl << T_color_infra1 << std::endl;
 	std::cout << "T_color_infra2 matrix :" << std::endl << T_color_infra2 << std::endl;
 	std::cout << "T_color_multi1 matrix :" << std::endl << T_color_multi1 << std::endl;
@@ -75,7 +75,7 @@ cv::Mat CamParasLoad::get_Inf2_para(){ return CameraInf2; }
 cv::Mat CamParasLoad::get_Multi1_para(){ return CameraMulti1; }
 cv::Mat CamParasLoad::get_Heat_para(){ return CameraHeat; }
 
-cv::Mat CamParasLoad::get_T_color_depth(){ return T_color_depth; }
+cv::Mat CamParasLoad::get_T_depth_color(){ return T_depth_color; }
 cv::Mat CamParasLoad::get_T_color_infra1(){ return T_color_infra1; }
 cv::Mat CamParasLoad::get_T_color_infra2(){ return T_color_infra2; }
 cv::Mat CamParasLoad::get_T_color_multi1(){ return T_color_multi1; }

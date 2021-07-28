@@ -28,7 +28,7 @@ CameraInf2: !!opencv-matrix
    data: [ 384.6130676269531, 0.0, 319.5439758300781, 
            0.0, 384.6130676269531, 240.34002685546875, 
            0.0, 0.0, 1.0 ]      
-T_color_depth: !!opencv-matrix
+T_depth_color: !!opencv-matrix
    rows: 4
    cols: 4
    dt: d
