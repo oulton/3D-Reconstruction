@@ -1,3 +1,0 @@
-/home/hyper/code/TEST/3D-Reconstruction/RGB-D-H-M/build/CMakeFiles/rebuild_cache.dir
-/home/hyper/code/TEST/3D-Reconstruction/RGB-D-H-M/build/CMakeFiles/RGBD_H_M.dir
-/home/hyper/code/TEST/3D-Reconstruction/RGB-D-H-M/build/CMakeFiles/edit_cache.dir
