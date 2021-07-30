@@ -66,7 +66,7 @@ int main()
     cv2eigen(CamParas_.get_T_lidar_color(), T_lidar_color);
 
     Eigen::Matrix4f  T_depth_multi, T_depth_inf1, T_depth_inf2, T_depth_heat, T_color_heat;
-    T_color_heat = T_lidar_color * T_lidar_heat.inverse();
+    T_color_heat = T_lidar_heat.inverse() * T_lidar_color;
     T_depth_multi = T_color_multi1 * T_depth_color;
     T_depth_inf1  = T_color_infra1 * T_depth_color;
     T_depth_inf2  = T_color_infra2 * T_depth_color;
@@ -140,7 +140,7 @@ int main()
                 inf2_out.ptr<uchar>(v_)[u_] = inf2.ptr<uchar>(v)[u];
             
             //heat对齐到color   图像类型都是8UC3  彩色图
-            Eigen::Vector3f heatPixPoint = CameraInf2 * (T_depth_heat.block(0,0,3,3) * depthFramPoint + T_depth_heat.block(0,3,3,1));
+            Eigen::Vector3f heatPixPoint = CameraHeat * (T_depth_heat.block(0,0,3,3) * depthFramPoint + T_depth_heat.block(0,3,3,1));
             u = heatPixPoint[0]/heatPixPoint[2];
             v = heatPixPoint[1]/heatPixPoint[2];
             if( u<0||u>=heat.cols || v<0||v>=heat.rows ){}
