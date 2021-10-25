@@ -1,0 +1,3 @@
+/home/hyper/code/TEST/mars_test/colormap/build/CMakeFiles/rebuild_cache.dir
+/home/hyper/code/TEST/mars_test/colormap/build/CMakeFiles/edit_cache.dir
+/home/hyper/code/TEST/mars_test/colormap/build/CMakeFiles/main.dir

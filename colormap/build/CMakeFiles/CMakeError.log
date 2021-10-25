@@ -1,0 +1,55 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/hyper/code/TEST/mars_test/colormap/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e7906/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e7906.dir/build.make CMakeFiles/cmTC_e7906.dir/build
+make[1]: 进入目录“/home/hyper/code/TEST/mars_test/colormap/build/CMakeFiles/CMakeTmp”
+Building C object CMakeFiles/cmTC_e7906.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_e7906.dir/CheckSymbolExists.c.o   -c /home/hyper/code/TEST/mars_test/colormap/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_e7906
+/opt/cmake-3.12.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e7906.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_e7906.dir/CheckSymbolExists.c.o  -o cmTC_e7906 
+CMakeFiles/cmTC_e7906.dir/CheckSymbolExists.c.o：在函数‘main’中：
+CheckSymbolExists.c:(.text+0x1b)：对‘pthread_create’未定义的引用
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_e7906.dir/build.make:86: recipe for target 'cmTC_e7906' failed
+make[1]: *** [cmTC_e7906] Error 1
+make[1]: 离开目录“/home/hyper/code/TEST/mars_test/colormap/build/CMakeFiles/CMakeTmp”
+Makefile:121: recipe for target 'cmTC_e7906/fast' failed
+make: *** [cmTC_e7906/fast] Error 2
+
+File /home/hyper/code/TEST/mars_test/colormap/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/hyper/code/TEST/mars_test/colormap/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_59623/fast"
+/usr/bin/make -f CMakeFiles/cmTC_59623.dir/build.make CMakeFiles/cmTC_59623.dir/build
+make[1]: 进入目录“/home/hyper/code/TEST/mars_test/colormap/build/CMakeFiles/CMakeTmp”
+Building C object CMakeFiles/cmTC_59623.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_59623.dir/CheckFunctionExists.c.o   -c /opt/cmake-3.12.2/share/cmake-3.12/Modules/CheckFunctionExists.c
+Linking C executable cmTC_59623
+/opt/cmake-3.12.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_59623.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_59623.dir/CheckFunctionExists.c.o  -o cmTC_59623 -lpthreads 
+/usr/bin/ld: 找不到 -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_59623.dir/build.make:86: recipe for target 'cmTC_59623' failed
+make[1]: *** [cmTC_59623] Error 1
+make[1]: 离开目录“/home/hyper/code/TEST/mars_test/colormap/build/CMakeFiles/CMakeTmp”
+Makefile:121: recipe for target 'cmTC_59623/fast' failed
+make: *** [cmTC_59623/fast] Error 2
+
+
