@@ -30,6 +30,8 @@
 #include <pcl/io/vtk_lib_io.h>
 #include <pcl/filters/filter.h>
 
+#define THRESHOLD 0.05
+
 
 void PCLcloudVisualizer( pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud ){
 
@@ -60,57 +62,60 @@ int main( )
     // PCLcloudVisualizer( cloud );
 
     float max_distance = 0;
+    Eigen::Vector3f point_min( 0, 0, -10 ); //获取距离原点最近的point
 
     for (int i = 0; i < cloud->points.size(); i++)
     {
         Eigen::Vector3f point_temp( cloud->points[i].x,  cloud->points[i].y , cloud->points[i].z);
         float distance_ = sqrt(pow(point_temp[0], 2) + pow(point_temp[1], 2) + pow(point_temp[2], 2));
         max_distance = max_distance>distance_ ? max_distance:distance_;
+
+        point_min[1] = point_min[1]>point_temp[1] ? point_temp[1]:point_min[1];
+        point_min[2] = point_min[2]<point_temp[2] ? point_temp[2]:point_min[2];
     }
-    
+    std::cout << point_min <<std::endl;
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_8level ( new pcl::PointCloud<pcl::PointXYZRGB> );
     for (int i = 0; i < cloud->points.size(); i++)
     {
         pcl::PointXYZRGB P = cloud->points[i];
-        // Eigen::Vector3f point_temp( cloud->points[i].x,  cloud->points[i].y , cloud->points[i].z);
-        float distance_ = sqrt(pow(P.x, 2) + pow(P.y, 2) + pow(P.z, 2));
-        if(abs(distance_ - max_distance/8) < 0.1)
+        float distance_ = sqrt(pow(P.x, 2) + pow(P.y - point_min[1], 2) + pow(P.z - point_min[2], 2));
+        if(abs(distance_ - max_distance/8) < THRESHOLD)
         {
             P.b = 0;
             P.g = 0;
-            P.r = 128;
+            P.r = 255;
         }
-        if(abs(distance_ - max_distance*2/8) < 0.1)
+        if(abs(distance_ - max_distance*2/8) < THRESHOLD)
         {
             P.b = 0;
-            P.g = 128;
+            P.g = 255;
             P.r = 0;
         }
-        if(abs(distance_ - max_distance*3/8) < 0.1)
+        if(abs(distance_ - max_distance*3/8) < THRESHOLD)
         {
-            P.b = 0;
-            P.g = 128;
-            P.r = 128;
-        }
-        if(abs(distance_ - max_distance*4/8) < 0.1)
-        {
-            P.b = 128;
+            P.b = 255;
             P.g = 0;
             P.r = 0;
         }
-        if(abs(distance_ - max_distance*5/8) < 0.1)
+        if(abs(distance_ - max_distance*4/8) < THRESHOLD)
         {
-            P.b = 128;
-            P.g = 0;
-            P.r = 128;
+            P.b = 0;
+            P.g = 255;
+            P.r = 255;
         }
-        if(abs(distance_ - max_distance*6/8) < 0.1)
+        if(abs(distance_ - max_distance*5/8) < THRESHOLD)
         {
-            P.b = 128;
-            P.g = 128;
+            P.b = 255;
+            P.g = 0;
+            P.r = 255;
+        }
+        if(abs(distance_ - max_distance*6/8) < THRESHOLD)
+        {
+            P.b = 255;
+            P.g = 255;
             P.r = 0;
         }
-        if(abs(distance_ - max_distance*7/8) < 0.1)
+        if(abs(distance_ - max_distance*7/8) < THRESHOLD)
         {
             P.b = 128;
             P.g = 128;
@@ -124,6 +129,8 @@ int main( )
     pcl::toPCLPointCloud2(*cloud_8level, mesh.cloud  );
 
     pcl::io::savePLYFile( "../mesh/dis_8level.ply", mesh );
+
+    std::cout << "saved" << std::endl;
 
     return 0;
 }
