@@ -1,17 +1,17 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/hyper/桌面/colormap2/build/CMakeFiles/CMakeTmp
+Change Dir: /home/hyper/code/TEST/3D-Reconstruction/colormap2/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_0cc48"
-[1/2] Building C object CMakeFiles/cmTC_0cc48.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_0cc48
-FAILED: cmTC_0cc48 
-: && /usr/bin/gcc-7   -rdynamic CMakeFiles/cmTC_0cc48.dir/CheckSymbolExists.c.o  -o cmTC_0cc48   && :
-CMakeFiles/cmTC_0cc48.dir/CheckSymbolExists.c.o：在函数‘main’中：
+Run Build Command:"/usr/bin/ninja" "cmTC_82ce9"
+[1/2] Building C object CMakeFiles/cmTC_82ce9.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_82ce9
+FAILED: cmTC_82ce9 
+: && /usr/bin/gcc-7   -rdynamic CMakeFiles/cmTC_82ce9.dir/CheckSymbolExists.c.o  -o cmTC_82ce9   && :
+CMakeFiles/cmTC_82ce9.dir/CheckSymbolExists.c.o：在函数‘main’中：
 CheckSymbolExists.c:(.text+0x1b)：对‘pthread_create’未定义的引用
 collect2: error: ld returned 1 exit status
 ninja: build stopped: subcommand failed.
 
-File /home/hyper/桌面/colormap2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/hyper/code/TEST/3D-Reconstruction/colormap2/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -27,13 +27,13 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/hyper/桌面/colormap2/build/CMakeFiles/CMakeTmp
+Change Dir: /home/hyper/code/TEST/3D-Reconstruction/colormap2/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_9f4d6"
-[1/2] Building C object CMakeFiles/cmTC_9f4d6.dir/CheckFunctionExists.c.o
-[2/2] Linking C executable cmTC_9f4d6
-FAILED: cmTC_9f4d6 
-: && /usr/bin/gcc-7 -DCHECK_FUNCTION_EXISTS=pthread_create  -rdynamic CMakeFiles/cmTC_9f4d6.dir/CheckFunctionExists.c.o  -o cmTC_9f4d6  -lpthreads && :
+Run Build Command:"/usr/bin/ninja" "cmTC_c1d50"
+[1/2] Building C object CMakeFiles/cmTC_c1d50.dir/CheckFunctionExists.c.o
+[2/2] Linking C executable cmTC_c1d50
+FAILED: cmTC_c1d50 
+: && /usr/bin/gcc-7 -DCHECK_FUNCTION_EXISTS=pthread_create  -rdynamic CMakeFiles/cmTC_c1d50.dir/CheckFunctionExists.c.o  -o cmTC_c1d50  -lpthreads && :
 /usr/bin/ld: 找不到 -lpthreads
 collect2: error: ld returned 1 exit status
 ninja: build stopped: subcommand failed.

@@ -40,14 +40,14 @@ int main() {
             0, 2187.838429, 1005.266588,
             0, 0, 1;
 
-    string filename = "../data/mesh.ply";
+    string filename = "../data/segment.ply";
     Eigen::Matrix4d extrinsic;
 
-    string path = "../data/" + camera.Name[0] + ".png";
+    string path = "../data/" + camera.Name[115] + ".png";
     cv::Mat color = cv::imread(path, -1);
 
-    string save_path = "../data/segment.ply";
-    colormap( filename, save_path, color, camera.extrinsic[0], color_intrinsic );
+    string save_path = "../data/segment1.ply";
+    colormap( filename, save_path, color, camera.extrinsic[115], color_intrinsic );
 
     return 0;
 }
