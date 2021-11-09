@@ -108,7 +108,7 @@ void colormap(std::string filename, cv::Mat color,
     pcl::toPCLPointCloud2(*cloud, mesh.cloud  );
 
 //    PCLcloudVisualizer( mesh );
-    pcl::io::savePLYFile( "./distance.ply", mesh );
+    pcl::io::savePLYFile( "../data/distance.ply", mesh );
 
 }
 
