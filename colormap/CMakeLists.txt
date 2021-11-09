@@ -12,5 +12,5 @@ INCLUDE(${VTK_USE_FILE})
 include_directories(  ${OpenCV_INCLUDE_DIRS}   ${EIGEN3_INCLUDE_DIR}  ${PCL_INCLUDE_DIRS} )
 
 
-add_executable( main  main.cpp  camera.h vtk_expand.h colormap.h)
+add_executable( main  ./src/main.cpp  ./src/camera.h  ./src/vtk_expand.h  ./src/colormap.h)
 target_link_libraries( main   ${OpenCV_LIBRARIES} ${PCL_LIBRARIES}  )

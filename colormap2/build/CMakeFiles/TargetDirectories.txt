@@ -1,0 +1,3 @@
+/home/hyper/桌面/colormap2/build/CMakeFiles/rebuild_cache.dir
+/home/hyper/桌面/colormap2/build/CMakeFiles/main.dir
+/home/hyper/桌面/colormap2/build/CMakeFiles/edit_cache.dir

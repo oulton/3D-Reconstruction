@@ -1,12 +1,12 @@
 Determining if the pthread_create exist failed with the following output:
 Change Dir: /home/hyper/code/TEST/3D-Reconstruction/colormap/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_7bc12"
-[1/2] Building C object CMakeFiles/cmTC_7bc12.dir/CheckSymbolExists.c.o
-[2/2] Linking C executable cmTC_7bc12
-FAILED: cmTC_7bc12 
-: && /usr/bin/gcc-7   -rdynamic CMakeFiles/cmTC_7bc12.dir/CheckSymbolExists.c.o  -o cmTC_7bc12   && :
-CMakeFiles/cmTC_7bc12.dir/CheckSymbolExists.c.o：在函数‘main’中：
+Run Build Command:"/usr/bin/ninja" "cmTC_a7013"
+[1/2] Building C object CMakeFiles/cmTC_a7013.dir/CheckSymbolExists.c.o
+[2/2] Linking C executable cmTC_a7013
+FAILED: cmTC_a7013 
+: && /usr/bin/gcc-7   -rdynamic CMakeFiles/cmTC_a7013.dir/CheckSymbolExists.c.o  -o cmTC_a7013   && :
+CMakeFiles/cmTC_a7013.dir/CheckSymbolExists.c.o：在函数‘main’中：
 CheckSymbolExists.c:(.text+0x1b)：对‘pthread_create’未定义的引用
 collect2: error: ld returned 1 exit status
 ninja: build stopped: subcommand failed.
@@ -29,11 +29,11 @@ int main(int argc, char** argv)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/hyper/code/TEST/3D-Reconstruction/colormap/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/ninja" "cmTC_21e94"
-[1/2] Building C object CMakeFiles/cmTC_21e94.dir/CheckFunctionExists.c.o
-[2/2] Linking C executable cmTC_21e94
-FAILED: cmTC_21e94 
-: && /usr/bin/gcc-7 -DCHECK_FUNCTION_EXISTS=pthread_create  -rdynamic CMakeFiles/cmTC_21e94.dir/CheckFunctionExists.c.o  -o cmTC_21e94  -lpthreads && :
+Run Build Command:"/usr/bin/ninja" "cmTC_036b3"
+[1/2] Building C object CMakeFiles/cmTC_036b3.dir/CheckFunctionExists.c.o
+[2/2] Linking C executable cmTC_036b3
+FAILED: cmTC_036b3 
+: && /usr/bin/gcc-7 -DCHECK_FUNCTION_EXISTS=pthread_create  -rdynamic CMakeFiles/cmTC_036b3.dir/CheckFunctionExists.c.o  -o cmTC_036b3  -lpthreads && :
 /usr/bin/ld: 找不到 -lpthreads
 collect2: error: ld returned 1 exit status
 ninja: build stopped: subcommand failed.
