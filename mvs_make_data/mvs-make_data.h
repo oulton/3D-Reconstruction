@@ -25,7 +25,7 @@ void write_ini( string filename, int index,Eigen::Matrix3d intrinsic, Eigen::Mat
         exit(1);
     }
 
-    double focal_length = 2087.8384/2048 ;//intrinsic(0,0)/1280.0;
+    double focal_length = intrinsic(0,0)/2048 ;//intrinsic(0,0)/1280.0;
     int pixel_aspect = 1;
     float principal_point = 0.5;
     Eigen::Matrix4d extrinsic_= extrinsic.inverse();

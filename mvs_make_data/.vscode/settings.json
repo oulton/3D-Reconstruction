@@ -11,6 +11,8 @@
     ],
     "python.pythonPath": "/home/hyper/anaconda3/envs/tfpy36/bin/python",
     "files.associations": {
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "typeindex": "cpp",
+        "typeinfo": "cpp"
     }
 }

@@ -1,5 +1,5 @@
 //
-// Created by wy on 20-8-29.
+// Created by hyper on 21-11-22.
 //
 
 #include <vector>
@@ -17,11 +17,10 @@
 
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
-#include <pcl/visualization/cloud_viewer.h>
 #include <pcl/common/transforms.h>
 
 #include <camera.h>
-#include <mvs-make_data.h>
+#include "mvs-make_data.h"
 
 using namespace std;
 
@@ -32,7 +31,7 @@ int main( ) {
     string project_path="../data/";
 
     Camera_param camera;
-    camera.LoadCameraParam(project_path+"camera_para/ex_param.txt");
+    camera.LoadCameraParam(project_path+"camera_para/ex_param.txt", "quat");
 
     vector<Mat> color_(NUM_CAMS);
     for( int i=0;i<NUM_CAMS;i++){
