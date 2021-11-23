@@ -75,6 +75,9 @@ int main( )
     }
     std::cout << point_min <<std::endl;
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_8level ( new pcl::PointCloud<pcl::PointXYZRGB> );
+
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr levels[8];
+
     for (int i = 0; i < cloud->points.size(); i++)
     {
         pcl::PointXYZRGB P = cloud->points[i];
@@ -122,6 +125,23 @@ int main( )
             P.r = 128;
         }
         cloud_8level->push_back(P);
+
+        if(distance_ <= max_distance/8)
+            levels[0]->push_back(cloud->points[i]);
+        if(distance_ > max_distance/8 && distance_ <= max_distance*2/8)
+            levels[1]->push_back(cloud->points[i]);
+        if(distance_ > max_distance*2/8 && distance_ <= max_distance*3/8)
+            levels[2]->push_back(cloud->points[i]);
+        if(distance_ > max_distance*3/8 && distance_ <= max_distance*4/8)
+            levels[3]->push_back(cloud->points[i]);
+        if(distance_ > max_distance*4/8 && distance_ <= max_distance*5/8)
+            levels[4]->push_back(cloud->points[i]);
+        if(distance_ > max_distance*5/8 && distance_ <= max_distance*6/8)
+            levels[5]->push_back(cloud->points[i]);
+        if(distance_ > max_distance*6/8 && distance_ <= max_distance*7/8)
+            levels[6]->push_back(cloud->points[i]);
+        if(distance_ > max_distance*7/8 && distance_ <= max_distance)
+            levels[7]->push_back(cloud->points[i]);
     }
 
     pcl::PolygonMesh mesh;
