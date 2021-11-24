@@ -29,8 +29,10 @@
 #include <pcl/common/transforms.h>
 #include <pcl/io/vtk_lib_io.h>
 #include <pcl/filters/filter.h>
+#include <pcl/filters/voxel_grid.h>
 
-#define THRESHOLD 0.05
+#define THRESHOLD 0.02
+#define FILTER_SCALE 3
 
 
 void PCLcloudVisualizer( pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud ){
@@ -73,84 +75,76 @@ int main( )
         point_min[1] = point_min[1]>point_temp[1] ? point_temp[1]:point_min[1];
         point_min[2] = point_min[2]<point_temp[2] ? point_temp[2]:point_min[2];
     }
-    std::cout << point_min <<std::endl;
-    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_8level ( new pcl::PointCloud<pcl::PointXYZRGB> );
 
-    pcl::PointCloud<pcl::PointXYZRGB>::Ptr levels[8];
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_8level ( new pcl::PointCloud<pcl::PointXYZRGB> );
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr filtered_cloud_8level ( new pcl::PointCloud<pcl::PointXYZRGB> );
+
+    pcl::PointCloud<pcl::PointXYZRGB> levels[8];
+    pcl::PointCloud<pcl::PointXYZRGB> filtered_levels[8];
 
     for (int i = 0; i < cloud->points.size(); i++)
     {
         pcl::PointXYZRGB P = cloud->points[i];
         float distance_ = sqrt(pow(P.x, 2) + pow(P.y - point_min[1], 2) + pow(P.z - point_min[2], 2));
-        if(abs(distance_ - max_distance/8) < THRESHOLD)
+   
+        for (int j = 0; j < 8; j++)
         {
-            P.b = 0;
-            P.g = 0;
-            P.r = 255;
-        }
-        if(abs(distance_ - max_distance*2/8) < THRESHOLD)
-        {
-            P.b = 0;
-            P.g = 255;
-            P.r = 0;
-        }
-        if(abs(distance_ - max_distance*3/8) < THRESHOLD)
-        {
-            P.b = 255;
-            P.g = 0;
-            P.r = 0;
-        }
-        if(abs(distance_ - max_distance*4/8) < THRESHOLD)
-        {
-            P.b = 0;
-            P.g = 255;
-            P.r = 255;
-        }
-        if(abs(distance_ - max_distance*5/8) < THRESHOLD)
-        {
-            P.b = 255;
-            P.g = 0;
-            P.r = 255;
-        }
-        if(abs(distance_ - max_distance*6/8) < THRESHOLD)
-        {
-            P.b = 255;
-            P.g = 255;
-            P.r = 0;
-        }
-        if(abs(distance_ - max_distance*7/8) < THRESHOLD)
-        {
-            P.b = 128;
-            P.g = 128;
-            P.r = 128;
+            if(abs(distance_ - max_distance*j/8) < THRESHOLD)
+            {
+                P.b = 0;
+                P.g = 0;
+                P.r = 255;
+            }
         }
         cloud_8level->push_back(P);
 
         if(distance_ <= max_distance/8)
-            levels[0]->push_back(cloud->points[i]);
+            levels[0].push_back(P);
         if(distance_ > max_distance/8 && distance_ <= max_distance*2/8)
-            levels[1]->push_back(cloud->points[i]);
+            levels[1].push_back(P);
         if(distance_ > max_distance*2/8 && distance_ <= max_distance*3/8)
-            levels[2]->push_back(cloud->points[i]);
+            levels[2].push_back(P);
         if(distance_ > max_distance*3/8 && distance_ <= max_distance*4/8)
-            levels[3]->push_back(cloud->points[i]);
+            levels[3].push_back(P);
         if(distance_ > max_distance*4/8 && distance_ <= max_distance*5/8)
-            levels[4]->push_back(cloud->points[i]);
+            levels[4].push_back(P);
         if(distance_ > max_distance*5/8 && distance_ <= max_distance*6/8)
-            levels[5]->push_back(cloud->points[i]);
+            levels[5].push_back(P);
         if(distance_ > max_distance*6/8 && distance_ <= max_distance*7/8)
-            levels[6]->push_back(cloud->points[i]);
+            levels[6].push_back(P);
         if(distance_ > max_distance*7/8 && distance_ <= max_distance)
-            levels[7]->push_back(cloud->points[i]);
+            levels[7].push_back(P);
+    }
+
+    //将8级，分别进行不同程度的下采样
+    for (int i = 0; i < 8; i++)
+    {
+        if(i==0)
+            filtered_levels[i] = levels[i];
+        else
+        {
+            // 创建滤波对象
+            pcl::VoxelGrid<pcl::PointXYZRGB> filter;
+            filter.setInputCloud(levels[i].makeShared());
+            // 设置体素栅格的大小为 1x1x1cm * i * FILTER_SCALE
+            filter.setLeafSize(i * FILTER_SCALE * 0.01f, i * FILTER_SCALE * 0.01f, i * FILTER_SCALE * 0.01f);
+            filter.filter(filtered_levels[i]);
+        }
+
+        for (int j = 0; j < filtered_levels[i].points.size(); j++)
+            filtered_cloud_8level->push_back(filtered_levels[i].points[j]);
+        
     }
 
     pcl::PolygonMesh mesh;
-
     pcl::toPCLPointCloud2(*cloud_8level, mesh.cloud  );
-
     pcl::io::savePLYFile( "../mesh/dis_8level.ply", mesh );
+    std::cout << "saved  cloud_8level" << std::endl;
 
-    std::cout << "saved" << std::endl;
+    pcl::PolygonMesh filtered_mesh;
+    pcl::toPCLPointCloud2(*filtered_cloud_8level, filtered_mesh.cloud  );
+    pcl::io::savePLYFile( "../mesh/dis_filtered_8level.ply", filtered_mesh );
+    std::cout << "saved  filtered_cloud_8level" << std::endl;
 
     return 0;
 }

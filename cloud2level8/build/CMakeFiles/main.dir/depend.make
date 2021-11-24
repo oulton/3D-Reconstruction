@@ -52,6 +52,8 @@ CMakeFiles/main.dir/src/main.cpp.o: /usr/include/pcl-1.8/pcl/features/normal_3d.
 CMakeFiles/main.dir/src/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/boost.h
 CMakeFiles/main.dir/src/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/filter.h
 CMakeFiles/main.dir/src/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/filter.hpp
+CMakeFiles/main.dir/src/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/impl/voxel_grid.hpp
+CMakeFiles/main.dir/src/main.cpp.o: /usr/include/pcl-1.8/pcl/filters/voxel_grid.h
 CMakeFiles/main.dir/src/main.cpp.o: /usr/include/pcl-1.8/pcl/for_each_type.h
 CMakeFiles/main.dir/src/main.cpp.o: /usr/include/pcl-1.8/pcl/geometry/planar_polygon.h
 CMakeFiles/main.dir/src/main.cpp.o: /usr/include/pcl-1.8/pcl/impl/cloud_iterator.hpp
