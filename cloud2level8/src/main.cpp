@@ -127,7 +127,12 @@ int main( )
             pcl::VoxelGrid<pcl::PointXYZRGB> filter;
             filter.setInputCloud(levels[i].makeShared());
             // 设置体素栅格的大小为 1x1x1cm * i * FILTER_SCALE
-            filter.setLeafSize(i * FILTER_SCALE * 0.01f, i * FILTER_SCALE * 0.01f, i * FILTER_SCALE * 0.01f);
+            if (i<=4)
+                filter.setLeafSize(i * FILTER_SCALE * 0.01f, i * FILTER_SCALE * 0.01f, i * FILTER_SCALE * 0.01f);
+            else if(i==5)
+                filter.setLeafSize(i * FILTER_SCALE * 0.02f, i * FILTER_SCALE * 0.02f, i * FILTER_SCALE * 0.02f);
+            else
+                filter.setLeafSize(i * FILTER_SCALE * 0.03f, i * FILTER_SCALE * 0.03f, i * FILTER_SCALE * 0.03f);
             filter.filter(filtered_levels[i]);
         }
 
