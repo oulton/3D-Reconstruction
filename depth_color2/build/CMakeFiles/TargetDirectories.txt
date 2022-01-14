@@ -1,0 +1,3 @@
+/home/hyper/code/TEST/depth_color2/build/CMakeFiles/rebuild_cache.dir
+/home/hyper/code/TEST/depth_color2/build/CMakeFiles/displayimage.dir
+/home/hyper/code/TEST/depth_color2/build/CMakeFiles/edit_cache.dir
